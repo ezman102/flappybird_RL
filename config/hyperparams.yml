@@ -1,0 +1,26 @@
+# config/hyperparams.yml
+training:
+  episodes: 10000
+  batch_size: 64
+  buffer_size: 50000        # Increased for better sample diversity
+  train_start: 1000         # Wait for more initial experiences
+  train_freq: 4             # Train every 4 steps
+  save_interval: 100        # Save model every 100 episodes
+
+algorithm:
+  gamma: 0.99               # Discount factor (0.95-0.99 typical)
+  lr: 0.0001                # Learning rate (1e-3 to 1e-5 common)
+  epsilon_start: 1.0
+  epsilon_end: 0.01
+  epsilon_decay: 0.99995    # Adjusted for step-based decay
+  target_update_steps: 1000 # Network sync frequency
+  train_freq: 4 
+
+network:
+  hidden_layers: [128, 64]  # Layer sizes
+  activation: "ReLU"
+
+environment:
+  use_lidar: False          # True for 180D LIDAR observations
+  render_mode: null         # Set to "human" for visualization
+  reward_scale: 1.0         # Optional reward multiplier
