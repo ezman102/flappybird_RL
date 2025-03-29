@@ -64,5 +64,3 @@ After training, the following are saved to `results/<experiment_name>/`:
 - Python ≥ 3.8
 - `torch`, `numpy`, `matplotlib`, `tqdm`, `gymnasium`, `flappy-bird-gymnasium`, `PyYAML`
 ```
-
-You can copy this directly to your `README.md`. Let me know if you need any other changes!
