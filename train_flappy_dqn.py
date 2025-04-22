@@ -168,10 +168,13 @@ def train():
             agent.save(results_dir / "models" / f"best_model_ep{episode+1}.pth")
 
         # Early stop if target score is reached
-        if train_config.get('target_reward') and episode_reward >= train_config['target_reward']:
-            print(f"\n🎯 Target reward {train_config['target_reward']} reached at episode {episode + 1}.")
-            agent.save(results_dir / "models" / f"target_reached_model_ep{episode+1}.pth")
-            break
+        if train_config.get('target_reward') and len(reward_history) >= train_config['reward_window']:
+            moving_avg = np.mean(reward_history[-train_config['reward_window']:])
+            if moving_avg >= train_config['target_reward']:
+                print(f"\n🎯 Target avg reward {train_config['target_reward']} reached at episode {episode + 1}.")
+                agent.save(results_dir / "models" / f"target_reached_model_ep{episode+1}.pth")
+                break
+
 
     # Save final artifacts
     progress.close()
