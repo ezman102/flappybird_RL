@@ -77,12 +77,13 @@ Average Score     : {np.mean(scores_np):.2f}
 Max Score         : {np.max(scores_np):.0f}
 Median Score      : {np.median(scores_np):.0f}
 Score Std Dev     : {np.std(scores_np):.2f}
+% Episodes > 100  : {(scores_np > 100).mean() * 100:.2f}%
 % Episodes > 200  : {(scores_np > 200).mean() * 100:.2f}%
-% Episodes > 500  : {(scores_np > 500).mean() * 100:.2f}%
-% Episodes > 1000 : {(scores_np > 1000).mean() * 100:.2f}%
-Reached 1000+     : {"Episode " + str(reached_1000) if reached_1000 > 0 else "Never"}
+% Episodes > 300  : {(scores_np > 300).mean() * 100:.2f}%
+Reached 300+      : {"Episode " + str(next((i+1 for i, s in enumerate(scores_np) if s >= 300), "Never"))}
 Total Eval Time   : {duration:.2f} sec
 """
+
 
     print(summary)
 
