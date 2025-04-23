@@ -1,4 +1,4 @@
-# train_flappy_dqn.py
+# train_flappy.py
 import argparse
 import gymnasium as gym
 import torch
