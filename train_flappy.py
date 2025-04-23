@@ -1,4 +1,5 @@
 # train_flappy.py
+
 import argparse
 import gymnasium as gym
 import torch
@@ -30,9 +31,21 @@ timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 log_dir = Path("logs")
 log_dir.mkdir(exist_ok=True)
 log_file = log_dir / f"{algo_for_log}_{timestamp}.log"
-sys.stdout = open(log_file, "w")
-sys.stderr = sys.stdout
 
+class Tee:
+    def __init__(self, *files):
+        self.files = files
+    def write(self, obj):
+        for f in self.files:
+            f.write(obj)
+            f.flush()
+    def flush(self):
+        for f in self.files:
+            f.flush()
+
+log_file_handle = open(log_file, "w")
+print(f"📄 Logging to: {log_file}")  
+sys.stdout = sys.stderr = Tee(sys.__stdout__, log_file_handle)
 
 # ---------------------------
 # Arg Parsing and Config
@@ -95,7 +108,7 @@ def train():
             epsilon_start=algo_config['epsilon_start'],
             epsilon_end=algo_config['epsilon_end'],
             epsilon_decay=algo_config['epsilon_decay'],
-            hidden_layers=algo_config.get('hidden_layers', [128, 128])  # for DQN only
+            hidden_layers=algo_config.get('hidden_layers', [128, 128])
         )
         buffer = ReplayBuffer(
             capacity=train_config['buffer_size'],
@@ -107,7 +120,14 @@ def train():
     total_steps = 0
     best_reward = -np.inf
     reward_history = []
-    progress = tqdm(total=train_config['max_episodes'], desc="Training")
+    progress = tqdm(
+    total=train_config['max_episodes'], 
+    desc="Training", 
+    ncols=100, 
+    file=sys.stdout,
+    ascii=False  # Add this line
+    )
+
 
     for episode in range(train_config['max_episodes']):
         state, done = env.reset()[0], False
