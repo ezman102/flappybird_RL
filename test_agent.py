@@ -67,24 +67,44 @@ def evaluate():
     duration = (datetime.now() - start_time).total_seconds()
     scores_np = np.array(scores)
 
-    # Build summary string
+    # Compute cumulative stats
+    above_50 = (scores_np > 50).mean() * 100
+    above_100 = (scores_np > 100).mean() * 100
+    above_200 = (scores_np > 200).mean() * 100
+    first_200plus_ep = next((i + 1 for i, s in enumerate(scores_np) if s >= 200), "Never")
+
+    # Compute histogram-style score bins
+    bins = {
+        "0–50": ((scores_np <= 50).mean() * 100),
+        "51–100": (((scores_np > 50) & (scores_np <= 100)).mean() * 100),
+        "101–200": (((scores_np > 100) & (scores_np <= 200)).mean() * 100),
+        "201+": ((scores_np > 200).mean() * 100),
+    }
+
     summary = f"""
-=== Evaluation Summary ===
-Algorithm         : {args.algo.upper()}
-Model Path        : {args.model_path}
-Episodes Tested   : {args.episodes}
-Average Score     : {np.mean(scores_np):.2f}
-Max Score         : {np.max(scores_np):.0f}
-Median Score      : {np.median(scores_np):.0f}
-Score Std Dev     : {np.std(scores_np):.2f}
-% Episodes > 50  : {(scores_np > 50).mean() * 100:.2f}%
-% Episodes > 100  : {(scores_np > 100).mean() * 100:.2f}%
-% Episodes > 200  : {(scores_np > 200).mean() * 100:.2f}%
-Reached 200+      : {"Episode " + str(next((i+1 for i, s in enumerate(scores_np) if s >= 200), "Never"))}
-Total Eval Time   : {duration:.2f} sec
-"""
+    === Evaluation Summary ===
+    Algorithm         : {args.algo.upper()}
+    Model Path        : {args.model_path}
+    Episodes Tested   : {args.episodes}
+    Average Score     : {np.mean(scores_np):.2f}
+    Max Score         : {np.max(scores_np):.0f}
+    Median Score      : {np.median(scores_np):.0f}
+    Score Std Dev     : {np.std(scores_np):.2f}
 
+    # Cumulative Thresholds
+    % Episodes > 50   : {above_50:.2f}%
+    % Episodes > 100  : {above_100:.2f}%
+    % Episodes > 200  : {above_200:.2f}%
+    Reached 200+      : Episode {first_200plus_ep}
 
+    # Score Distribution
+    0–50     : {bins['0–50']:.2f}%
+    51–100   : {bins['51–100']:.2f}%
+    101–200  : {bins['101–200']:.2f}%
+    201+     : {bins['201+']:.2f}%
+
+    Total Eval Time   : {duration:.2f} sec
+    """
     print(summary)
 
     # Save to file
