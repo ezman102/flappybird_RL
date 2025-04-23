@@ -1,5 +1,5 @@
 # 🐦 Flappy Bird Reinforcement Learning Agents
-Train and evaluate Deep Reinforcement Learning agents to play Flappy Bird using **DQN**, **Dueling DQN**, and **PPO**. Includes training, video recording, and performance visualization utilities.
+Train and evaluate Deep Reinforcement Learning agents to play Flappy Bird using **DQN**, **Dueling DQN**, and **PPO**. Includes training, video recording, evaluation, and performance visualization utilities.
 ---
 
 ## 🚀 Getting Started
@@ -27,7 +27,13 @@ python record_video.py --algo dqn --model-path path/to/model.pth --num-episodes 
 
 Videos will be saved under `recordings/`.
 
-### 4. Visualize Performance
+### 4. Test Agent Performance
+
+```bash
+python test_agent.py --algo dqn --model-path path/to/model.pth --episodes 500
+```
+
+### 5. Visualize Training & Evaluation Results
 ```bash
 jupyter notebook visualization.ipynb
 ```
@@ -52,10 +58,15 @@ All training-related settings are located in `config/hyperparams.yml`. You can a
 
 ---
 
+## 📓 main.ipynb (Colab Notebook)
+A complete, self-contained Colab notebook that walks through the entire workflow: repo setup, agent training, video recording, performance evaluation, and visual comparison of all algorithms.
+
+---
+
 ## 📊 Outputs
 After training, the following are saved to `results/<experiment_name>/`:
 - `models/`: Best and final models
-- `metrics/`: Numpy array of episode rewards
+- `metrics/`: Numpy array of episode rewards (as .npy)
 - `configs/`: A copy of the used config
 
 ---
