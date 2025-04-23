@@ -98,9 +98,9 @@ def evaluate():
     Reached 200+      : Episode {first_200plus_ep}
 
     # Score Distribution
-    0–50     : {bins['0–50']:.2f}%
-    51–100   : {bins['51–100']:.2f}%
-    101–200  : {bins['101–200']:.2f}%
+    0-50     : {bins['0-50']:.2f}%
+    51-100   : {bins['51-100']:.2f}%
+    101-200  : {bins['101-200']:.2f}%
     201+     : {bins['201+']:.2f}%
 
     Total Eval Time   : {duration:.2f} sec
