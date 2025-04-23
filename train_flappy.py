@@ -1,4 +1,10 @@
 # train_flappy.py
+# ---------------------------------------------------------------
+# Main training script for Flappy Bird RL agents (DQN, Dueling DQN, PPO).
+# Loads configurations from YAML, sets up environment and logging,
+# trains the selected agent, and saves models and metrics to a timestamped directory.
+# Includes early stopping and reward tracking for evaluation.
+# ---------------------------------------------------------------
 
 import argparse
 import gymnasium as gym
@@ -18,7 +24,7 @@ import sys
 import os
 
 # ---------------------------
-# Logging Setup (Auto Timestamped)
+# Logging Setup
 # ---------------------------
 def pre_parse_algo():
     for i, arg in enumerate(sys.argv):
@@ -125,7 +131,7 @@ def train():
     desc="Training", 
     ncols=100, 
     file=sys.stdout,
-    ascii=False  # Add this line
+    ascii=False  
     )
 
 

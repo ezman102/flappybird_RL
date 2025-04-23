@@ -33,11 +33,6 @@ Videos will be saved under `recordings/`.
 python test_agent.py --algo dqn --model-path path/to/model.pth --episodes 500
 ```
 
-### 5. Visualize Training & Evaluation Results
-```bash
-jupyter notebook visualization.ipynb
-```
-
 ---
 
 ## 🧠 Algorithms Supported

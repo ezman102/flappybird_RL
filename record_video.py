@@ -1,3 +1,9 @@
+# record_video.py
+# ---------------------------------------------------------------
+# Runs a trained agent in the Flappy Bird environment and records gameplay.
+# Saves the rendered frames as video files for visualization or demo purposes.
+# ---------------------------------------------------------------
+
 import argparse
 import gymnasium as gym
 from gymnasium.wrappers import RecordVideo
@@ -25,7 +31,7 @@ def parse_args():
     return parser.parse_args()
 
 def extract_timestamp_from_path(path: str) -> str:
-    # Extract timestamp from path like .../DQN_lr0.0001_gam0.99_20250422_211052/...
+    # Extract timestamp from path 
     parts = Path(path).parts
     for part in parts:
         if "_" in part and part[-6:].isdigit():

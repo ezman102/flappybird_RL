@@ -1,4 +1,10 @@
-# dpn_agent.py
+# dqn_agent.py
+# ---------------------------------------------------------------
+# Implements the Deep Q-Network (DQN) agent for Flappy Bird.
+# Includes Q-network architecture, epsilon-greedy action selection,
+# experience-based training, target network update, and model persistence.
+# ---------------------------------------------------------------
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -45,7 +51,7 @@ class DQNAgent:
     def train(self, batch):
         states, actions, rewards, next_states, dones = batch
         
-        # Convert to tensors (already properly dimensioned)
+        # Convert to tensors
         states = states.to(self.device)
         actions = actions.to(self.device).long()
         rewards = rewards.to(self.device)

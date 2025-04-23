@@ -1,39 +1,38 @@
 common:
-  gamma: 0.99
+  gamma: 0.99   # Discount factor for future rewards
 
 dqn:
-  lr: 0.0001
-  epsilon_start: 1.0
-  epsilon_end: 0.01
-  epsilon_decay: 0.995
-  target_update_steps: 1000
-  train_freq: 4
-  hidden_layers: [128, 128]
+  lr: 0.0001  # Learning rate
+  epsilon_start: 1.0  # Initial epsilon for exploration
+  epsilon_end: 0.01  # Final epsilon value
+  epsilon_decay: 0.995  # Decay rate for epsilon
+  target_update_steps: 1000  # Steps between target network updates
+  train_freq: 4  # Frequency to train the Q-network
+  hidden_layers: [128, 128]  # Neural network hidden layer sizes
 
 dueling:
-  lr: 0.0001
-  epsilon_start: 1.0
-  epsilon_end: 0.01
-  epsilon_decay: 0.999
-  target_update_steps: 1000
-  train_freq: 4
-  hidden_layers: [128, 128]  # recommended to add for consistency
-
+  lr: 0.0001  
+  epsilon_start: 1.0  
+  epsilon_end: 0.01 
+  epsilon_decay: 0.999  # Slower decay than DQN for smoother exploration
+  target_update_steps: 1000 
+  train_freq: 4 
+  hidden_layers: [128, 128] 
 ppo:
-  lr: 0.00025
-  entropy_coeff: 0.001
-  clip_epsilon: 0.1
-  ppo_epochs: 5
+  lr: 0.00025 
+  entropy_coeff: 0.001  # Encourages exploration by adding entropy bonus
+  clip_epsilon: 0.1  # Clipping range for PPO objective
+  ppo_epochs: 5  # Number of epochs per update
 
 environment:
-  use_lidar: false
-  render_mode: null
+  use_lidar: false  # Whether to use LIDAR-based observations
+  render_mode: null  # Rendering mode ('human' or 'rgb_array')
 
 training:
-  max_episodes: 10000
-  buffer_size: 50000
-  batch_size: 2048
-  train_start: 2048
-  target_reward: 50         
-  reward_window: 100
-  patience: 20
+  max_episodes: 10000   # Maximum number of training episodes
+  buffer_size: 50000  # Size of experience replay buffer (for DQN and Dueling)
+  batch_size: 2048  # Batch size for training updates
+  train_start: 2048  # Minimum buffer size before training starts
+  target_reward: 50  # Early stopping threshold based on average reward
+  reward_window: 100  # Window size for calculating moving average reward
+  patience: 20  # Optional early stopping patience

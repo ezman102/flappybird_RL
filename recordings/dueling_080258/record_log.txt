@@ -1,0 +1,5 @@
+Episode 1: Score 107.50
+Episode 2: Score 41.50
+Episode 3: Score 167.60
+
+Average score: 105.53

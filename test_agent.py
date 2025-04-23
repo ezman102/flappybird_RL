@@ -1,3 +1,10 @@
+# test_agent.py
+# ---------------------------------------------------------------
+# This script evaluates a trained RL agent (DQN, Dueling DQN, or PPO)
+# on the FlappyBird-v0 environment. It runs multiple test episodes,
+# computes performance metrics (average, max, median score, thresholds),
+# and saves a summary report for further analysis.
+# ---------------------------------------------------------------
 import argparse
 import gymnasium as gym
 import torch
@@ -10,6 +17,7 @@ from tqdm import tqdm
 from datetime import datetime
 from pathlib import Path
 
+# Parse command-line arguments
 def parse_args():
     parser = argparse.ArgumentParser(description="Evaluate a trained Flappy Bird agent")
     parser.add_argument('--algo', type=str, required=True, choices=['dqn', 'dueling', 'ppo'], help='RL algorithm')
@@ -34,6 +42,7 @@ def load_agent(algo, model_path, state_dim, action_dim):
         agent.q_net.eval()
     return agent
 
+# Evaluate the agent on multiple episodes and compute statistics
 def evaluate():
     args = parse_args()
     env = gym.make("FlappyBird-v0", use_lidar=False, render_mode=None)
@@ -73,14 +82,15 @@ def evaluate():
     above_200 = (scores_np > 200).mean() * 100
     first_200plus_ep = next((i + 1 for i, s in enumerate(scores_np) if s >= 200), "Never")
 
-    # Compute histogram-style score bins
+    # Binned score distribution
     bins = {
-        "0–50": ((scores_np <= 50).mean() * 100),
-        "51–100": (((scores_np > 50) & (scores_np <= 100)).mean() * 100),
-        "101–200": (((scores_np > 100) & (scores_np <= 200)).mean() * 100),
+        "0-50": ((scores_np <= 50).mean() * 100),
+        "51-100": (((scores_np > 50) & (scores_np <= 100)).mean() * 100),
+        "101-200": (((scores_np > 100) & (scores_np <= 200)).mean() * 100),
         "201+": ((scores_np > 200).mean() * 100),
     }
 
+    # Summary string
     summary = f"""
     === Evaluation Summary ===
     Algorithm         : {args.algo.upper()}
