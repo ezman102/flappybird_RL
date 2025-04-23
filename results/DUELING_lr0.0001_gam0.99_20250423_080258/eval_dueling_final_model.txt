@@ -1,0 +1,24 @@
+
+    === Evaluation Summary ===
+    Algorithm         : DUELING
+    Model Path        : results/DUELING_lr0.0001_gam0.99_20250423_080258/models/final_model.pth
+    Episodes Tested   : 500
+    Average Score     : 257.13
+    Max Score         : 1551
+    Median Score      : 195
+    Score Std Dev     : 236.51
+
+    # Cumulative Thresholds
+    % Episodes > 50   : 85.00%
+    % Episodes > 100  : 69.80%
+    % Episodes > 200  : 49.00%
+    Reached 200+      : Episode 1
+
+    # Score Distribution
+    0–50     : 15.00%
+    51–100   : 15.20%
+    101–200  : 20.80%
+    201+     : 49.00%
+
+    Total Eval Time   : 429.92 sec
+    

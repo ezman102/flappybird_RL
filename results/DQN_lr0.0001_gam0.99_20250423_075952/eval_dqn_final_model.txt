@@ -1,0 +1,24 @@
+
+    === Evaluation Summary ===
+    Algorithm         : DQN
+    Model Path        : /content/flappybird_RL/results/DQN_lr0.0001_gam0.99_20250423_075952/models/final_model.pth
+    Episodes Tested   : 500
+    Average Score     : 557.48
+    Max Score         : 3989
+    Median Score      : 360
+    Score Std Dev     : 606.85
+
+    # Cumulative Thresholds
+    % Episodes > 50   : 87.20%
+    % Episodes > 100  : 80.40%
+    % Episodes > 200  : 65.80%
+    Reached 200+      : Episode 2
+
+    # Score Distribution
+    0–50     : 12.80%
+    51–100   : 6.80%
+    101–200  : 14.60%
+    201+     : 65.80%
+
+    Total Eval Time   : 670.16 sec
+    

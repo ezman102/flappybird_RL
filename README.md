@@ -14,15 +14,15 @@ pip install flappy-bird-gymnasium
 ### 2. Train an Agent
 
 ```bash
-python train_flappy_dqn.py --algo dqn
-python train_flappy_dqn.py --algo dueling
-python train_flappy_dqn.py --algo ppo
+python train_flappy.py --algo dqn
+python train_flappy.py --algo dueling
+python train_flappy.py --algo ppo
 ```
 
 ### 3. Record Agent Gameplay
 
 ```bash
-python record_video.py --algo dqn --model-path path/to/model.pth --num-episodes 5
+python record_video.py --algo dqn --model-path path/to/model.pth --num-episodes 3
 ```
 
 Videos will be saved under `recordings/`.

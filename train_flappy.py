@@ -202,8 +202,5 @@ def train():
     np.save(results_dir / "metrics" / "reward_history.npy", reward_history)
     print(f"\n✅ Training completed. Results saved to: {results_dir}")
 
-# ---------------------------
-# Run
-# ---------------------------
 if __name__ == "__main__":
     train()

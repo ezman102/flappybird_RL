@@ -1,0 +1,24 @@
+
+    === Evaluation Summary ===
+    Algorithm         : PPO
+    Model Path        : results/PPO_lr0.00025_gam0.99_20250423_070923/models/final_model.pth
+    Episodes Tested   : 500
+    Average Score     : 51.59
+    Max Score         : 312
+    Median Score      : 37
+    Score Std Dev     : 49.25
+
+    # Cumulative Thresholds
+    % Episodes > 50   : 38.60%
+    % Episodes > 100  : 12.40%
+    % Episodes > 200  : 2.20%
+    Reached 200+      : Episode 10
+
+    # Score Distribution
+    0–50     : 61.40%
+    51–100   : 26.20%
+    101–200  : 10.20%
+    201+     : 2.20%
+
+    Total Eval Time   : 228.65 sec
+    
